@@ -5,6 +5,7 @@ class Monster{
 	private $life;
 	
 	//private $type;
+	//private $type;
 	private $type;
     
     //pour la fonction du constructeur on met toujours le double underscore
