@@ -3,6 +3,7 @@ class Monster{
 	private $name;
 	private $strength;
 	private $life;
+	
 	//private $type;
 	private $type;
     
