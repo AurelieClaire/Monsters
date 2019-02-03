@@ -2,10 +2,11 @@
 
 require __DIR__ . '/functions.php';//require= importer ,_DIR_=le directory, .=concatenation, ensuite le nom du fichier à importer
 
+$monsters = getMonsters3();
 
-$monsters = getMonsters2();
-var_dump($monsters);
 ?>
+                        
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -29,6 +30,12 @@ var_dump($monsters);
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <!--Création d'un nouveau onglet pour l'administrateur de la base de donnée du site, page qui lui permettra d'ajouter, modifier ou supprimer un monstre-->
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="identifiants.php">Admin <span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
 
@@ -54,6 +61,7 @@ var_dump($monsters);
                         <th>Strength</th>
                         <th>Life</th>
                         <th>Type</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,8 +71,10 @@ var_dump($monsters);
                             <td><?php echo $monster->getStrength(); ?></td>
                             <td><?php echo $monster->getLife(); ?></td>
                             <td><?php echo $monster->getType(); ?></td>
+                           
                         </tr>
                     <?php } ?>
+                    
                 </tbody>
             </table>
 
@@ -76,6 +86,7 @@ var_dump($monsters);
                             <option value="">Choose a Monster</option>
                             <?php foreach ($monsters as $key => $monster) { ?>
                                 <option value="<?php echo $key; ?>"><?php echo $monster->getName(); ?></option>
+                               
                             <?php } ?>
                         </select>
                         <br>
@@ -85,6 +96,7 @@ var_dump($monsters);
                             <option value="">Choose a Monster</option>
                             <?php foreach ($monsters as $key => $monster) { ?>
                                 <option value="<?php echo $key; ?>"><?php echo $monster->getName(); ?></option>
+                                
                             <?php } ?>
                         </select>
                         <br>
@@ -92,7 +104,7 @@ var_dump($monsters);
                     </form>
                 </div>
             </div>
-        </div>
+        </div>>
 
         <footer>
             <div class="container">

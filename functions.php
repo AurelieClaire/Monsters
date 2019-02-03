@@ -1,5 +1,9 @@
 <?php
 require __DIR__ . '/classe1.php';
+
+
+
+
 function getMonsters()
 {
     return [
@@ -30,6 +34,7 @@ function getMonsters()
     ];
 }
 
+// fonction qui retourne un tableau d'objets de type Monstre 
 function getMonsters2(){
     $monster1 = new Monster();
     $monster1->setName('Domovoï');
@@ -58,6 +63,46 @@ function getMonsters2(){
     $monstersTab = array($monster1, $monster2, $monster3, $monster4);
 
     return $monstersTab;
+}
+
+//Fonction qui retourne un tableau d'objets de type Monstre, les données
+//provenant de la base de données Monsters
+function getMonsters3(){
+    try{
+        $bdd = new PDO('mysql: host=localhost; dbname=monsters; charset=utf8', 'root', 'aurelie');
+    }catch(Exception $e){
+        die('Error: '.$e->getMessage());
+    }
+
+    $response = $bdd->query('select * from monstre2');
+    $data=array();
+    foreach($response->fetchAll() as $monster){
+        $m = new Monster();
+        $m->setName($monster['name']);
+        $m->setStrength($monster['strength']);
+        $m->setLife($monster['life']);
+        $m->setType($monster['type']);
+        $data[] = $m;
+    }
+    return $data;
+    $response->closeCursor();
+   
+}
+
+
+//fonction qui supprime un monstre de la base de données Monsters
+function deleteMonster($name){
+    
+        try{
+            $bdd = new PDO('mysql: host=localhost; dbname=monsters; charset=utf8', 'root', 'aurelie');
+            $requete = $bdd->prepare('DELETE FROM monstre2 WHERE name = ?');
+            $requete -> execute(array($name));
+        }catch(Exception $e){
+            die('Error: '.$e->getMessage());
+        }
+    
+        return;
+        $requete->closeCursor();
 }
 
 /**
